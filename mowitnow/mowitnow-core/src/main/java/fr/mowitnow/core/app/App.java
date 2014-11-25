@@ -17,9 +17,9 @@ public class App {
 	public static void main(String[] args) throws IOException,
 			MowerParserException {
 
-		if (args.length == 0) {
-			throw new java.lang.ArrayIndexOutOfBoundsException(
-					"Le fichier instructions.txt introuvable!!!");
+		if (args.length ==0) {
+			System.out.println("Le fichier instructions.txt introuvable!!!");
+			System.exit(0);
 		}
 
 		@SuppressWarnings("unchecked")
