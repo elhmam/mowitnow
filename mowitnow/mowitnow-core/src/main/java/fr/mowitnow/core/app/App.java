@@ -19,7 +19,7 @@ public class App {
 
 		if (args.length == 0) {
 			throw new java.lang.ArrayIndexOutOfBoundsException(
-					"Il faut renseigner le nom du fichier!!!");
+					"Le fichier instructions.txt introuvable!!!");
 		}
 
 		@SuppressWarnings("unchecked")
@@ -33,13 +33,13 @@ public class App {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = ObjectFactory.getMowerBehavior();
 			for (Mower mower : mowers) {
-				System.out.println("Mower Début "+ mower.toString());
+				System.out.println("Début : "+ mower.toString());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
 					System.out.println(c + " > " + mower.getX() + " - "
 							+ mower.getY() + " - " + mower.getOrientation());
 				}
-				System.out.println("Mower Fin "+ mower.toString());
+				System.out.println("Fin : "+ mower.toString());
 			}
 		}else {
 			for (String error : errors) {
