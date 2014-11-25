@@ -4,12 +4,16 @@ import fr.mowitnow.core.behvior.MowerBehavior;
 import fr.mowitnow.core.behvior.MowerBehaviorImpl;
 import fr.mowitnow.core.model.Lawn;
 import fr.mowitnow.core.model.Mower;
+import fr.mowitnow.core.parser.MowerParser;
+import fr.mowitnow.core.parser.MowerParserImpl;
 
 public class ObjectFactory {
 	
 	private static MowerBehavior mowerBehavior;
 	
 	private static Lawn lawn;
+	
+	private static MowerParser mowerParser; 
 
 	/**
 	 * Prototype Mower 
@@ -50,6 +54,20 @@ public class ObjectFactory {
 			}
 		}
 		return mowerBehavior;
+	}
+	/**
+	 * Singleton MowerParser 
+	 * @return la meme instance de l'objet MowerParser
+	 */
+	public static MowerParser getMowerParser() {
+		if (mowerParser == null) {
+			synchronized (MowerParser.class) {
+				if (mowerParser == null) {
+					mowerParser = new MowerParserImpl();
+				}
+			}
+		}
+		return mowerParser;
 	}
 
 }
