@@ -17,14 +17,12 @@ import fr.mowitnow.core.parser.MowerParserImpl;
 
 public class App {
 
-	 final static Logger LOGGER = LoggerFactory.getLogger(App.class);
-	   
+	final static Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-	    
 	public static void main(String[] args) throws IOException,
 			MowerParserException {
 
-		if (args.length ==0) {
+		if (args.length == 0) {
 			LOGGER.warn("Veuillez entrer le nom du fichier des instructions !!!");
 			System.exit(0);
 		}
@@ -32,24 +30,25 @@ public class App {
 		@SuppressWarnings("unchecked")
 		List<String> lines = FileUtils.readLines(new File(args[0]));
 
-		MowerParser mowerParser=new MowerParserImpl();
-		
-		List<String> errors=mowerParser.checkData(lines);
-		
-		if(errors.isEmpty()){
+		MowerParser mowerParser = new MowerParserImpl();
+
+		List<String> errors = mowerParser.checkData(lines);
+
+		if (errors.isEmpty()) {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (Mower mower : mowers) {
-				LOGGER.info("Departure : "+ mower.showCoordinate());
+				LOGGER.info("Departure : " + mower.showCoordinate());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
-					LOGGER.debug("Instruction " + c + " > " + mower.getX() + " - "
-							+ mower.getY() + " - " + mower.getOrientation());
+					LOGGER.debug("Instruction " + c + " > " + mower.getX()
+							+ " - " + mower.getY() + " - "
+							+ mower.getOrientation());
 				}
-				LOGGER.info("Arrival : "+ mower.showCoordinate());
+				LOGGER.info("Arrival : " + mower.showCoordinate());
 				LOGGER.info("------------ ");
 			}
-		}else {
+		} else {
 			for (String error : errors) {
 				LOGGER.error(error);
 			}

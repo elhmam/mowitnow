@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,17 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.mowitnow.core.behvior.MowerBehavior;
-import fr.mowitnow.core.factory.ObjectFactory;
+import fr.mowitnow.core.behvior.MowerBehaviorImpl;
 import fr.mowitnow.core.model.Mower;
 import fr.mowitnow.core.parser.MowerParser;
+import fr.mowitnow.core.parser.MowerParserImpl;
 
 @Controller
 public class MowerController {
+	
+
+	private static final String MOWITNOW = "mowitnow";
+	final static Logger LOGGER = LoggerFactory.getLogger(MowerController.class);
 
 	@RequestMapping(value = "/mowitnow", method = RequestMethod.GET)
 	public String mowitnowForm(Model model) {
 		model.addAttribute("result", "Entrer une valeur");
-		return "mowitnow";
+		return MOWITNOW;
 	}
 
 	@RequestMapping(value = "/mowitnow", method = RequestMethod.POST)
@@ -36,7 +43,7 @@ public class MowerController {
 			lines.add(s.nextLine());
 		}
 
-		MowerParser mowerParser = ObjectFactory.getMowerParser();
+		MowerParser mowerParser = new MowerParserImpl();
 
 		List<String> errors = mowerParser.checkData(lines);
 		
@@ -44,25 +51,25 @@ public class MowerController {
 
 		if (errors.isEmpty()) {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
-			MowerBehavior mowerBehavior = ObjectFactory.getMowerBehavior();
+			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (Mower mower : mowers) {
-				System.out.println("Début : " + mower.toString());
+				LOGGER.info("before : " + mower.showCoordinate());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
 					System.out.println(c + " > " + mower.getX() + " - "
 							+ mower.getY() + " - " + mower.getOrientation());
 				}
-				System.out.println("Fin : " + mower.toString());
-				result.append(mower.getX()+"-"+mower.getY()+"<br/>");
+				LOGGER.info("after : " + mower.showCoordinate());
+				result.append(mower.getX()+"-"+mower.getY());
 			}
 		} else {
 			for (String error : errors) {
-				System.out.println(error);
+				LOGGER.warn(error);
 			}
 		}
 
 		model.addAttribute("result", result.toString());
-		return "mowitnow";
+		return MOWITNOW;
 	}
 
 }

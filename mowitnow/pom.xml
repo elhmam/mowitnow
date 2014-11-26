@@ -10,8 +10,6 @@
     <module>mowitnow-web</module>
   </modules>
   
-  
-  
   <build>
     <plugins>
       <plugin>
