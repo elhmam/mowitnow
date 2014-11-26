@@ -94,5 +94,11 @@ public class Mower {
 						x, y, deltaX, deltaY, orientation, lawn,itinerary);
 	}
 	
+	public String showCoordinate() {
+		return String
+				.format("Mower [x=%s, y=%s, orientation=%s]",
+						x, y, orientation);
+	}
+	
 
 }

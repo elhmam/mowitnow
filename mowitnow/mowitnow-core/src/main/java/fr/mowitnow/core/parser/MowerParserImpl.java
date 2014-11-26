@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.mowitnow.core.factory.ObjectFactory;
 import fr.mowitnow.core.model.Lawn;
 import fr.mowitnow.core.model.Mower;
 
@@ -67,7 +66,7 @@ public class MowerParserImpl implements MowerParser {
 		if(matcher.find()){
 			int width = Integer.parseInt(matcher.group(1));
 			int height = Integer.parseInt(matcher.group(2));
-			Lawn lawn = ObjectFactory.getLawn(width, height);
+			Lawn lawn = new Lawn(width, height);
 			for (int i = 1; i < lines.size(); i = i + 2) {
 				Pattern patternMower = Pattern.compile(PATTERN_MOWER);
 				Matcher matcher1 = patternMower.matcher(lines.get(i));
@@ -76,7 +75,7 @@ public class MowerParserImpl implements MowerParser {
 					int y = Integer.parseInt(matcher1.group(2));
 					char orientation = matcher1.group(3).charAt(0);
 					if (Pattern.matches(PATTERN_ITINARY, lines.get(i + 1))) {
-						Mower mower = ObjectFactory.getMower(x, y, orientation, lawn,
+						Mower mower = new Mower(x, y, orientation, lawn,
 								lines.get(i + 1));
 						mowers.add(mower);
 					}
