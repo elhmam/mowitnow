@@ -72,6 +72,7 @@ public class MowerController {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (Mower mower : mowers) {
+				results.add("mower");
 				results.add("before : " + mower.showCoordinate());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
@@ -86,6 +87,8 @@ public class MowerController {
 		model.addAttribute("errors", errors);
 		LOGGER.info(errors.size() + " erreurs");
 		model.addAttribute(DATA, data.toString());	
+		model.addAttribute("xlimit", lines.get(0).split(" ")[0]);
+		model.addAttribute("ylimit", lines.get(0).split(" ")[1]);
 		
 		return HOME;
 	}

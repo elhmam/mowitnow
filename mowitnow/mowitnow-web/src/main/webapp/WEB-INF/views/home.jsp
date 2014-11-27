@@ -22,6 +22,8 @@
    		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
    		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+
 </head>
 <body>
 
@@ -39,7 +41,7 @@
 				<div class="panel-body">
 					<form class="navbar-form navbar-left" method="POST" action="/home">
 						<div class="form-group">
-							<textarea rows="10" cols="50" name="data" class="form-control"
+							<textarea rows="10" cols="70" name="data" class="form-control"
 								placeholder="Entrer le plan d'exécution">${data}</textarea>
 						</div>
 						<br> <br>
@@ -57,17 +59,32 @@
 						<h3 class="panel-title">Résultats</h3>
 					</div>
 					<div class="panel-body">
-						<ul class="list-group">
-							<c:forEach items="${results}" var="result">
-								<li class="list-group-item"><c:out value="${result}" /></li>
+						<div class="accordion" id="accordion2">
+							<c:set var="imower" value="0" />
+							<c:forEach items="${results}" var="result" varStatus="count">
+								<c:choose>
+  									<c:when test="${result=='mower'}">
+  										<c:set var="imower" value="${imower+1 }" />
+										<c:if test="${count.index>0}"></div></div></c:if>
+											<div class="accordion-group">
+												<div class="accordion-heading">
+													<a class="accordion-toggle" data-toggle="collapse"
+														data-parent="#accordion2" href="#collapseOne${imower}" > ${result} ${imower} </a>
+												</div>
+												<div id="collapseOne${imower}" class="accordion-body collapse in">
+									</c:when>
+									<c:otherwise>
+   										<c:out value="${result}" /><br>
+  									</c:otherwise>
+								</c:choose>		
 							</c:forEach>
-						</ul>
+						</div>
 					</div>
 				</div>
-
 			</c:if>
+			
 			<c:if test="${!empty errors}">
-				<div class="alert alert-warning" role="alert">
+				<div class="alert alert-warning" >
 					<div class="panel-body">
 						<c:forEach items="${errors}" var="error">
 							<c:out value="${error}" />
@@ -75,12 +92,14 @@
 						</c:forEach>
 					</div>
 				</div>
-			</c:if>
-
-
+			</c:if>		
+		
+		
 		</div>
 
+
 	</div>
+
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -89,5 +108,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	
+
 </body>
 </html>
