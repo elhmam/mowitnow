@@ -19,22 +19,34 @@ import fr.mowitnow.core.parser.MowerParser;
 import fr.mowitnow.core.parser.MowerParserImpl;
 
 @Controller
+@RequestMapping(value = "/home")
 public class MowerController {
 	
 
-	private static final String MOWITNOW = "mowitnow";
+	private static final String HOME = "home";
 	final static Logger LOGGER = LoggerFactory.getLogger(MowerController.class);
+	
 
-	@RequestMapping(value = "/mowitnow", method = RequestMethod.GET)
-	public String mowitnowForm(Model model) {
-		model.addAttribute("result", "Entrer une valeur");
-		return MOWITNOW;
+	@RequestMapping(method = RequestMethod.GET)
+	public String mowitnowForm(Model model) {	
+		model.addAttribute("hello", "Veuillez modifier le plan par défaut");
+		StringBuilder str=new StringBuilder();
+		str.append("5 5\n");
+		str.append("1 2 N\n");
+		str.append("GAGAGAGAA\n");
+		str.append("3 3 E\n");
+		str.append("AADAADADDA\n");		
+		
+		model.addAttribute("data", str.toString());
+		
+		return HOME;
 	}
 
-	@RequestMapping(value = "/mowitnow", method = RequestMethod.POST)
-	public String greetingSubmit(@ModelAttribute("data") String data,
-			Model model) {
 
+	@RequestMapping(method = RequestMethod.POST)
+	public String mowitnowSubmit(@ModelAttribute("data") String data,
+			Model model) {
+		model.addAttribute("hello", "Veuillez modifier le plan par défaut");
 		List<String> lines = new ArrayList<>();
 
 		@SuppressWarnings("resource")
@@ -56,7 +68,7 @@ public class MowerController {
 				LOGGER.info("before : " + mower.showCoordinate());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
-					System.out.println(c + " > " + mower.getX() + " - "
+					LOGGER.debug(c + " > " + mower.getX() + " - "
 							+ mower.getY() + " - " + mower.getOrientation());
 				}
 				LOGGER.info("after : " + mower.showCoordinate());
@@ -69,7 +81,8 @@ public class MowerController {
 		}
 
 		model.addAttribute("result", result.toString());
-		return MOWITNOW;
+		model.addAttribute("errors", errors);
+		return HOME;
 	}
 
 }
