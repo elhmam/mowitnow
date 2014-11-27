@@ -38,16 +38,16 @@ public class MowerParserImpl implements MowerParser {
 					Matcher matcher1 = patternMower.matcher(lines.get(i));
 					if (matcher1.find()) {
 						if (!Pattern.matches(PATTERN_ITINARY, lines.get(i + 1))) {
-							errors.add("L'itineraire de la tondeuse n'est pas valide : "
+							errors.add("Ligne : "+ (i+1) +" > L'itineraire de la tondeuse n'est pas valide : "
 									+ lines.get(i + 1));
 						}
 					} else {
-						errors.add("Les coordonnées de la tondeuse ne sont pas valides : "
+						errors.add("Ligne : "+ (i+1) +" > Les coordonnées de la tondeuse ne sont pas valides : "
 								+ lines.get(i));
 					}
 				}
 			} else {
-				errors.add("Les dimensions du gazon n'est pas valide  : "
+				errors.add("Ligne : 1 > Les dimensions du gazon n'est pas valide  : "
 						+ lines.get(0));
 			}
 		}
