@@ -23,30 +23,35 @@ import fr.mowitnow.core.parser.MowerParserImpl;
 public class MowerController {
 	
 
-	private static final String HOME = "home";
-	final static Logger LOGGER = LoggerFactory.getLogger(MowerController.class);
-	
+	private final static  String DATA = "data";
 
+	private final static  String HOME = "home";
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(MowerController.class);
+	
+	private final static	StringBuilder data=new StringBuilder().append("5 5\n").append("1 2 N\n").append("GAGAGAGAA\n").append("3 3 E\n").append("AADAADADDA\n");		
+	
+	/**
+	 * Affichage du formulaire
+	 * @param model
+	 * @return la page
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String mowitnowForm(Model model) {	
-		model.addAttribute("hello", "Veuillez modifier le plan par défaut");
-		StringBuilder str=new StringBuilder();
-		str.append("5 5\n");
-		str.append("1 2 N\n");
-		str.append("GAGAGAGAA\n");
-		str.append("3 3 E\n");
-		str.append("AADAADADDA\n");		
-		
-		model.addAttribute("data", str.toString());
-		
+		model.addAttribute(DATA, data.toString());		
 		return HOME;
 	}
 
-
+	/**
+	 * Traitement du formulaire
+	 * @param data 
+	 * @param model
+	 * @return la page
+	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String mowitnowSubmit(@ModelAttribute("data") String data,
+	public String mowitnowSubmit(@ModelAttribute(DATA) String data,
 			Model model) {
-		model.addAttribute("hello", "Veuillez modifier le plan par défaut");
+
 		List<String> lines = new ArrayList<>();
 
 		@SuppressWarnings("resource")
@@ -54,34 +59,34 @@ public class MowerController {
 		while (s.hasNext()) {
 			lines.add(s.nextLine());
 		}
-
+		
+		LOGGER.info(lines.size() + " lignes à traiter");
+		
 		MowerParser mowerParser = new MowerParserImpl();
 
 		List<String> errors = mowerParser.checkData(lines);
 		
-		StringBuilder result=new StringBuilder();
+		List<String>  results=new ArrayList<>();
 
 		if (errors.isEmpty()) {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (Mower mower : mowers) {
-				LOGGER.info("before : " + mower.showCoordinate());
+				results.add("before : " + mower.showCoordinate());
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
-					LOGGER.debug(c + " > " + mower.getX() + " - "
-							+ mower.getY() + " - " + mower.getOrientation());
+					results.add(c+" > "+mower.showCoordinate());
 				}
-				LOGGER.info("after : " + mower.showCoordinate());
-				result.append(mower.getX()+"-"+mower.getY());
-			}
-		} else {
-			for (String error : errors) {
-				LOGGER.warn(error);
+				results.add("after : " + mower.showCoordinate());
 			}
 		}
-
-		model.addAttribute("result", result.toString());
+		
+		model.addAttribute("results", results);
+		LOGGER.info(results.size() + " résultats");
 		model.addAttribute("errors", errors);
+		LOGGER.info(errors.size() + " erreurs");
+		model.addAttribute(DATA, data.toString());	
+		
 		return HOME;
 	}
 

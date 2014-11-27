@@ -6,9 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MowerRestController {
 
+	/**
+	 * Affichage de la page d'accueil
+	 * @return
+	 */
     @RequestMapping("/")
     public String index() {
-        return "Mowitnow";
+        return "Mini projet Mowitnow, <a href=\"home\">formulaire</a>";
     }
 
 }
