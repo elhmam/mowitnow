@@ -38,14 +38,16 @@ public class App {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (Mower mower : mowers) {
-				LOGGER.info("Departure : " + mower.showCoordinate());
+				LOGGER.info(String
+						.format("[%s, %s, %s]",mower.getX(),mower.getY(),mower.getOrientation()));
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
-					LOGGER.debug("Instruction " + c + " > " + mower.getX()
+					LOGGER.debug(c + " > " + mower.getX()
 							+ " - " + mower.getY() + " - "
 							+ mower.getOrientation());
 				}
-				LOGGER.info("Arrival : " + mower.showCoordinate());
+				LOGGER.info(String
+						.format("[%s, %s, %s]",mower.getX(),mower.getY(),mower.getOrientation()));
 				LOGGER.info("------------ ");
 			}
 		} else {

@@ -1,7 +1,9 @@
 package fr.mowitnow.web.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
@@ -21,36 +23,47 @@ import fr.mowitnow.core.parser.MowerParserImpl;
 @Controller
 @RequestMapping(value = "/home")
 public class MowerController {
-	
 
-	private final static  String DATA = "data";
+	private static final String YLIMIT = "ylimit";
 
-	private final static  String HOME = "home";
-	
-	private final static Logger LOGGER = LoggerFactory.getLogger(MowerController.class);
-	
-	private final static	StringBuilder data=new StringBuilder().append("5 5\n").append("1 2 N\n").append("GAGAGAGAA\n").append("3 3 E\n").append("AADAADADDA\n");		
-	
+	private static final String XLIMIT = "xlimit";
+
+	private static final String ERRORS = "errors";
+
+	private static final String MOWERS_MAP = "mowersMap";
+
+	private static final String DATA = "data";
+
+	private static final String HOME = "home";
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(MowerController.class);
+
+	private static final StringBuilder data = new StringBuilder()
+			.append("5 5\n").append("1 2 N\n").append("GAGAGAGAA\n")
+			.append("3 3 E\n").append("AADAADADDA\n");
+
 	/**
 	 * Affichage du formulaire
+	 * 
 	 * @param model
 	 * @return la page
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public String mowitnowForm(Model model) {	
-		model.addAttribute(DATA, data.toString());		
+	public String mowitnowForm(Model model) {
+		model.addAttribute(DATA, data.toString());
 		return HOME;
 	}
 
 	/**
 	 * Traitement du formulaire
-	 * @param data 
+	 * 
+	 * @param data
 	 * @param model
 	 * @return la page
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public String mowitnowSubmit(@ModelAttribute(DATA) String data,
-			Model model) {
+	public String mowitnowSubmit(@ModelAttribute(DATA) String data, Model model) {
 
 		List<String> lines = new ArrayList<>();
 
@@ -59,37 +72,37 @@ public class MowerController {
 		while (s.hasNext()) {
 			lines.add(s.nextLine());
 		}
-		
-		LOGGER.info(lines.size() + " lignes à traiter");
-		
-		MowerParser mowerParser = new MowerParserImpl();
 
+		LOGGER.info(lines.size() + " lignes à traiter");
+
+		MowerParser mowerParser = new MowerParserImpl();
 		List<String> errors = mowerParser.checkData(lines);
 		
-		List<String>  results=new ArrayList<>();
+		 	
+		Map<Integer, List<Mower>> mowersMap=new HashMap<>();
 
 		if (errors.isEmpty()) {
 			List<Mower> mowers = mowerParser.loadMowers(lines);
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
-			for (Mower mower : mowers) {
-				results.add("mower");
-				results.add("before : " + mower.showCoordinate());
-				for (char c : mower.getItinerary().toCharArray()) {
-					mowerBehavior.move(mower, c);
-					results.add(c+" > "+mower.showCoordinate());
-				}
-				results.add("after : " + mower.showCoordinate());
+			for (int j = 0; j < mowers.size(); j++) {
+				List<Mower> steps =new ArrayList<>();
+				Mower mower=new Mower(mowers.get(j).getX(),mowers.get(j).getY(),mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());
+				steps.add(mower);
+				for (char c : mowers.get(j).getItinerary().toCharArray()) {
+					mowerBehavior.move(mowers.get(j), c);
+					Mower mower1=new Mower(mowers.get(j).getX(),mowers.get(j).getY(),mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());					
+					steps.add(mower1);
+				}				
+				mowersMap.put(j, steps);					
 			}
 		}
-		
-		model.addAttribute("results", results);
-		LOGGER.info(results.size() + " résultats");
-		model.addAttribute("errors", errors);
-		LOGGER.info(errors.size() + " erreurs");
-		model.addAttribute(DATA, data.toString());	
-		model.addAttribute("xlimit", lines.get(0).split(" ")[0]);
-		model.addAttribute("ylimit", lines.get(0).split(" ")[1]);
-		
+
+		model.addAttribute(MOWERS_MAP, mowersMap);
+		model.addAttribute(ERRORS, errors);
+		model.addAttribute(DATA, data.toString());
+		model.addAttribute(XLIMIT, lines.get(0).split(" ")[0]);
+		model.addAttribute(YLIMIT, lines.get(0).split(" ")[1]);
+
 		return HOME;
 	}
 
