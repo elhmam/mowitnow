@@ -24,6 +24,21 @@
    		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
+ <style>
+#tondeuse {
+position: absolute;
+background-color: #abc;
+left: 50px;
+width: 10px;
+height: 10px;
+margin: 5px;
+}
+</style>
+<script >
+
+var myArray = new Array();
+
+</script>
 </head>
 <body>
 
@@ -36,7 +51,7 @@
 		<div class="col-lg-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h3 class="panel-title">Plan d'exécution</h3>
+					<h3 class="panel-title">Plan d'ex&eacute;cution</h3>
 				</div>
 				<div class="panel-body">
 					<form class="navbar-form navbar-left" method="POST" action="/home">
@@ -50,7 +65,7 @@
 					</form>
 				</div>
 			</div>
-			
+			<div class="block" id="tondeuse"></div>
 		</div>
 
 		<div class="col-lg-6">
@@ -60,12 +75,13 @@
 						<h3 class="panel-title">Etat de la pelouse apr&egrave;s le passage des tondeuses</h3>
 					</div>
 					<div class="panel-body">
-					<c:if test="${!empty mowersMap}">
+					<c:if test="${!empty mowersMap}">					
 						<div class="table-responsive"> 
-    						<table class="table table-bordered">
+    						<table class="table table-bordered" id="tab">
+    						<tbody>
     							<c:set var ="color" value="#3c763d"/>
 									<c:forEach var="i" begin="0" end="${xlimit}">
-										<c:set var="decr" value="${xlimit-i}"/>
+										<c:set var="decr" value="${xlimit-i}"/>										
 										<tr>							
    											<c:forEach var="j" begin="0" end="${ylimit}"> 
    												<c:forEach items="${mowersMap}" var="mowerMap" varStatus="count">	
@@ -75,13 +91,15 @@
   														</c:if>
   													</c:forEach>
 												</c:forEach>
-												<td style="color:#3c763d;background-color:${color}"> 
-													${j} - ${decr}																		
-   												</td>
+												<td style="color:#3c763d;background-color:${color}">																	
+													<div id="${j}-${decr}">${j} - ${decr}</div>
+													<script>myArray.push(${j}-${decr});</script>
+												</td>
    												<c:set var ="color" value="#3c763d"/>
 				   							</c:forEach>
    										</tr>
-									</c:forEach>			
+									</c:forEach>	
+									</tbody>		
 								</table>
 							</div>
 						</c:if>
@@ -118,6 +136,13 @@
 		</div>
 	</div>
 	
+	<button id="go">&raquo; Run</button>
+  	
+												
+												
+	
+	
+												
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
@@ -125,7 +150,21 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">	
+	$( "#go" ).click(function() {
+		
+		$('#tab tbody > tr > td').each(function() {
+			for ( var i = 0; i < myArray.length; i = i + 1 ) {
+				var spans = $( "#"+myArray[i] );
+				$(this).find(spans).css("background-color","red");
+			}
+			
+			
+	    })
+		
+	});	
 	
+	</script>
 
 </body>
 </html>
