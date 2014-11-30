@@ -18,6 +18,7 @@ import fr.mowitnow.core.behvior.MowerBehavior;
 import fr.mowitnow.core.behvior.MowerBehaviorImpl;
 import fr.mowitnow.core.model.Mower;
 import fr.mowitnow.core.parser.MowerParser;
+import fr.mowitnow.core.parser.MowerParserException;
 import fr.mowitnow.core.parser.MowerParserImpl;
 
 @Controller
@@ -28,7 +29,7 @@ public class MowerController {
 
 	private static final String XLIMIT = "xlimit";
 
-	private static final String ERRORS = "errors";
+	private static final String ERROR = "error";
 
 	private static final String MOWERS_MAP = "mowersMap";
 
@@ -76,29 +77,41 @@ public class MowerController {
 		LOGGER.info(lines.size() + " lignes à traiter");
 
 		MowerParser mowerParser = new MowerParserImpl();
-		List<String> errors = mowerParser.checkData(lines);
-		
-		 	
-		Map<Integer, List<Mower>> mowersMap=new HashMap<>();
+		List<Mower> mowers =null;
+		try {
+			mowers = mowerParser.loadMowers(lines);
+		} catch (MowerParserException e) {
+			LOGGER.error(e.getMessage());
+			model.addAttribute(ERROR, e.getMessage());
+		}
 
-		if (errors.isEmpty()) {
-			List<Mower> mowers = mowerParser.loadMowers(lines);
+		if(mowers!=null){
+			Map<Integer, List<Mower>> mowersMap = new HashMap<>();
+
+			
 			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 			for (int j = 0; j < mowers.size(); j++) {
-				List<Mower> steps =new ArrayList<>();
-				Mower mower=new Mower(mowers.get(j).getX(),mowers.get(j).getY(),mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());
+				List<Mower> steps = new ArrayList<>();
+				Mower mower = new Mower(mowers.get(j).getX(), mowers.get(j).getY(),
+						mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());
+				LOGGER.info("Tondeuse " + (j + 1) + " > " + mower.getX() + ","
+						+ mower.getY() + "," + mower.getOrientation());
 				steps.add(mower);
 				for (char c : mowers.get(j).getItinerary().toCharArray()) {
 					mowerBehavior.move(mowers.get(j), c);
-					Mower mower1=new Mower(mowers.get(j).getX(),mowers.get(j).getY(),mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());					
+					Mower mower1 = new Mower(mowers.get(j).getX(), mowers.get(j)
+							.getY(), mowers.get(j).getOrientation(),mowers.get(j).getLawn(),mowers.get(j).getItinerary());
+					LOGGER.info("Tondeuse " + (j + 1) + " > " + mower1.getX() + ","
+							+ mower1.getY() + "," + mower1.getOrientation());
 					steps.add(mower1);
-				}				
-				mowersMap.put(j, steps);					
+				}
+				mowersMap.put(j, steps);
 			}
+			model.addAttribute(MOWERS_MAP, mowersMap);	
 		}
+		
 
-		model.addAttribute(MOWERS_MAP, mowersMap);
-		model.addAttribute(ERRORS, errors);
+			
 		model.addAttribute(DATA, data.toString());
 		model.addAttribute(XLIMIT, lines.get(0).split(" ")[0]);
 		model.addAttribute(YLIMIT, lines.get(0).split(" ")[1]);

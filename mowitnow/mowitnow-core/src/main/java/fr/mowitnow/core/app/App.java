@@ -19,8 +19,7 @@ public class App {
 
 	final static Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-	public static void main(String[] args) throws IOException,
-			MowerParserException {
+	public static void main(String[] args) throws IOException {
 
 		if (args.length == 0) {
 			LOGGER.warn("Veuillez entrer le nom du fichier des instructions !!!");
@@ -31,30 +30,30 @@ public class App {
 		List<String> lines = FileUtils.readLines(new File(args[0]));
 
 		MowerParser mowerParser = new MowerParserImpl();
+		List<Mower> mowers=null;
+		try {
+			mowers = mowerParser.loadMowers(lines);
+		} catch (MowerParserException e) {
+			LOGGER.error(e.getMessage());
+		}
 
-		List<String> errors = mowerParser.checkData(lines);
-
-		if (errors.isEmpty()) {
-			List<Mower> mowers = mowerParser.loadMowers(lines);
-			MowerBehavior mowerBehavior = new MowerBehaviorImpl();
+				
+		MowerBehavior mowerBehavior = new MowerBehaviorImpl();
+		if(mowers!=null){
 			for (Mower mower : mowers) {
-				LOGGER.info(String
-						.format("[%s, %s, %s]",mower.getX(),mower.getY(),mower.getOrientation()));
+				LOGGER.info(String.format("Début : [%s, %s, %s]", mower.getX(),
+						mower.getY(), mower.getOrientation()));
 				for (char c : mower.getItinerary().toCharArray()) {
 					mowerBehavior.move(mower, c);
-					LOGGER.debug(c + " > " + mower.getX()
-							+ " - " + mower.getY() + " - "
-							+ mower.getOrientation());
+					LOGGER.debug(c + " > " + mower.getX() + " - " + mower.getY()
+							+ " - " + mower.getOrientation());
 				}
-				LOGGER.info(String
-						.format("[%s, %s, %s]",mower.getX(),mower.getY(),mower.getOrientation()));
+				LOGGER.info(String.format("Fin : [%s, %s, %s]", mower.getX(),
+						mower.getY(), mower.getOrientation()));
 				LOGGER.info("------------ ");
 			}
-		} else {
-			for (String error : errors) {
-				LOGGER.error(error);
-			}
 		}
+		
 
 	}
 

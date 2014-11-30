@@ -1,34 +1,23 @@
 package fr.mowitnow.core.model;
 
-
 public class Mower {
 
 	private int x;
 	private int y;
 	private int deltaX;
 	private int deltaY;
-	private char orientation; 
+	private char orientation;
 	private String itinerary;
 	private Lawn lawn;
-	
-	
-	
-	public Mower(int x, int y, char orientation,Lawn lawn,String itinerary) {
+
+	public Mower(int x, int y, char orientation, Lawn lawn, String itinerary) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.orientation = orientation;
-		this.lawn=lawn;
-		this.itinerary=itinerary;
-		
-		// initialisation de l'orientation
-		for (MovementEnum orientationEnum : MovementEnum.values()) {
-			if (orientationEnum.getDestination() == getOrientation()) {
-				setDeltaX(orientationEnum.getDeltaX());
-				setDeltaY(orientationEnum.getDeltaY());
-				break;
-			}
-		}
+		setOrientation(orientation);
+		this.lawn = lawn;
+		this.itinerary = itinerary;
+
 	}
 
 	public int getX() {
@@ -36,7 +25,7 @@ public class Mower {
 	}
 
 	public void setX(int nx) {
-		this.x=((nx < 0 || nx > getLawn().getXbound()) ? getX() : nx);
+		this.x = ((nx < 0 || nx > getLawn().getXbound()) ? getX() : nx);
 	}
 
 	public int getY() {
@@ -44,7 +33,7 @@ public class Mower {
 	}
 
 	public void setY(int ny) {
-		this.y=((ny < 0 || ny > getLawn().getYbound()) ? getY() : ny);
+		this.y = ((ny < 0 || ny > getLawn().getYbound()) ? getY() : ny);
 	}
 
 	public char getOrientation() {
@@ -53,6 +42,14 @@ public class Mower {
 
 	public void setOrientation(char orientation) {
 		this.orientation = orientation;
+		// initialisation de l'orientation
+		for (MovementEnum orientationEnum : MovementEnum.values()) {
+			if (orientationEnum.getDestination() == getOrientation()) {
+				setDeltaX(orientationEnum.getDeltaX());
+				setDeltaY(orientationEnum.getDeltaY());
+				break;
+			}
+		}
 	}
 
 	public int getDeltaX() {
@@ -78,7 +75,7 @@ public class Mower {
 	public void setLawn(Lawn lawn) {
 		this.lawn = lawn;
 	}
-	
+
 	public String getItinerary() {
 		return itinerary;
 	}
@@ -91,7 +88,7 @@ public class Mower {
 	public String toString() {
 		return String
 				.format("Mower [x=%s, y=%s, deltaX=%s, deltaY=%s, orientation=%s, lawn=%s, itinerary=%s]",
-						x, y, deltaX, deltaY, orientation, lawn,itinerary);
+						x, y, deltaX, deltaY, orientation, lawn, itinerary);
 	}
-	
+
 }
