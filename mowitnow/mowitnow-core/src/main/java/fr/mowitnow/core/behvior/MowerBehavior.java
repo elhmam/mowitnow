@@ -10,10 +10,11 @@ public interface MowerBehavior {
     /**
      * Déplacement d'une tondeuse dans son champ.
      * @param pMower
-     *            : tondeuse
+     *            : Tondeuse
      * @param pDirection
-     *            : direction
+     *            : Direction
+     * @return Mower : Etat final de la tondeuse
      */
-    void move(Mower pMower, char pDirection);
+    Mower execute(Mower pMower, char pDirection);
 
 }

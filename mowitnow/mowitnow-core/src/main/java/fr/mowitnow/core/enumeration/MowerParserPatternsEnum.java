@@ -28,8 +28,8 @@ public enum MowerParserPatternsEnum {
      * @param pVal
      *            : Valeur de l'enumération
      */
-    MowerParserPatternsEnum(final String pVal) {
-	this.value = pVal;
+    MowerParserPatternsEnum(String pVal) {
+        this.value = pVal;
     }
 
     /**
@@ -37,7 +37,7 @@ public enum MowerParserPatternsEnum {
      * @return value
      */
     public String getValue() {
-	return value;
+        return value;
     }
 
 }

@@ -36,7 +36,7 @@ public class App {
      *            : arguments à passer au lancement du programme
      */
     @SuppressWarnings("unchecked")
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
 
 	if (args.length == 0) {
 	    throw new ArrayIndexOutOfBoundsException();
@@ -65,7 +65,7 @@ public class App {
 		LOGGER.info(String.format("Début : [%s, %s, %s]", mower.getX(),
 			mower.getY(), mower.getOrientation()));
 		for (char c : mower.getPath().toCharArray()) {
-		    mowerBehavior.move(mower, c);
+		    mowerBehavior.execute(mower, c);
 		    LOGGER.debug(c + " > " + mower.getX() + " - "
 			    + mower.getY() + " - " + mower.getOrientation());
 		}

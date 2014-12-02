@@ -20,43 +20,46 @@ public class AppTest {
      * Initialisation du test.
      */
     @Before
-    public final void initTest() {
-	args = new String[0];
+    public void initTest() {
+        args = new String[0];
     }
 
     /**
      * Teste le cas ou aucun paramétre n'est passé au programme.
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public final void testNullParameterMain() {
-	App.main(args);
+    public void testNullParameterMain() {
+        App.main(args);
     }
+
     /**
      * Teste le cas ou une chaine vide est passé au programme.
      */
     @Test
-    public final void testEmptyParameterMain() {
-	args = new String[1];
-	args[0] = "";
-	App.main(args);
+    public void testEmptyParameterMain() {
+        args = new String[1];
+        args[0] = "";
+        App.main(args);
     }
+
     /**
      * Teste le cas ou le fichier envoyé au programme n'existe pas.
      */
     @Test
-    public final void testFileIsNotExistMain() {
-	args = new String[1];
-	args[0] = "instruction";
-	App.main(args);
+    public void testFileIsNotExistMain() {
+        args = new String[1];
+        args[0] = "instruction";
+        App.main(args);
     }
+
     /**
      * Teste le cas ou le fichier envoyé au programme existe.
      */
     @Test
-    public final void testFileExistMain() {
-	args = new String[1];
-	args[0] = "instructions.txt";
-	App.main(args);
+    public void testFileExistMain() {
+        args = new String[1];
+        args[0] = "instructions.txt";
+        App.main(args);
     }
 
 }

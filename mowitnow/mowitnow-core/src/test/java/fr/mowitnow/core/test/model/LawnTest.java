@@ -22,7 +22,7 @@ public class LawnTest {
      */
     @Before
     public final void initTest() {
-	lawn = new Lawn(3, 4);
+        lawn = new Lawn(3, 4);
     }
 
     /**
@@ -30,14 +30,15 @@ public class LawnTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetXboundException() {
-	lawn.setXbound(-1);
+        lawn.setXbound(-1);
     }
+
     /**
      * Teste le cas ou la limite verticale du champ est négative.
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetYboundException() {
-	lawn.setYbound(-1);
+        lawn.setYbound(-1);
     }
 
     /**
@@ -45,16 +46,17 @@ public class LawnTest {
      */
     @Test
     public final void testSetXbound() {
-	lawn.setXbound(10);
-	assertEquals(10,lawn.getXbound());
+        lawn.setXbound(10);
+        assertEquals(10, lawn.getXbound());
     }
+
     /**
      * Teste le cas ou la limite verticale du champ est positive.
      */
     @Test
     public final void testSetYbound() {
-	lawn.setYbound(10);
-	assertEquals(10,lawn.getYbound());
+        lawn.setYbound(10);
+        assertEquals(10, lawn.getYbound());
     }
 
 }

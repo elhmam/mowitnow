@@ -15,8 +15,8 @@ public final class MowerParserException extends Exception {
      * @param message
      *            : message d'erreur
      */
-    public MowerParserException(final String message) {
-	super(message);
+    public MowerParserException(String message) {
+        super(message);
     }
 
 }

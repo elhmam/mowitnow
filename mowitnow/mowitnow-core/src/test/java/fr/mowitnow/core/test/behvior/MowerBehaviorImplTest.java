@@ -33,61 +33,62 @@ public class MowerBehaviorImplTest {
      */
     @Before
     public void setUp() {
-	lawn = new Lawn(5, 5);
-	mower = new Mower(1, 2, 'N', lawn, "GAGAGAGAA");
-	mowerBehavior = new MowerBehaviorImpl();
+        lawn = new Lawn(5, 5);
+        mower = new Mower(1, 2, 'N', lawn, "GAGAGAGAA");
+        mowerBehavior = new MowerBehaviorImpl();
     }
+
     /**
-     * Testde la méthode move.
+     * Testde la méthode execute.
      */
     @Test
-    public void testMove() {
+    public void testexecute() {
 
-	// G > 1 - 2 - W
-	mowerBehavior.move(mower, 'G');
-	assertEquals(mower.getX(), 1);
-	assertEquals(mower.getY(), 2);
-	assertEquals(mower.getOrientation(), 'W');
-	// A > 0 - 2 - W
-	mowerBehavior.move(mower, 'A');
-	assertEquals(mower.getX(), 0);
-	assertEquals(mower.getY(), 2);
-	assertEquals(mower.getOrientation(), 'W');
-	// G > 0 - 2 - S
-	mowerBehavior.move(mower, 'G');
-	assertEquals(mower.getX(), 0);
-	assertEquals(mower.getY(), 2);
-	assertEquals(mower.getOrientation(), 'S');
-	// A > 0 - 1 - S
-	mowerBehavior.move(mower, 'A');
-	assertEquals(mower.getX(), 0);
-	assertEquals(mower.getY(), 1);
-	assertEquals(mower.getOrientation(), 'S');
-	// G > 0 - 1 - E
-	mowerBehavior.move(mower, 'G');
-	assertEquals(mower.getX(), 0);
-	assertEquals(mower.getY(), 1);
-	assertEquals(mower.getOrientation(), 'E');
-	// A > 1 - 1 - E
-	mowerBehavior.move(mower, 'A');
-	assertEquals(mower.getX(), 1);
-	assertEquals(mower.getY(), 1);
-	assertEquals(mower.getOrientation(), 'E');
-	// G > 1 - 1 - N
-	mowerBehavior.move(mower, 'G');
-	assertEquals(mower.getX(), 1);
-	assertEquals(mower.getY(), 1);
-	assertEquals(mower.getOrientation(), 'N');
-	// A > 1 - 2 - N
-	mowerBehavior.move(mower, 'A');
-	assertEquals(mower.getX(), 1);
-	assertEquals(mower.getY(), 2);
-	assertEquals(mower.getOrientation(), 'N');
-	// A > 1 - 3 - N
-	mowerBehavior.move(mower, 'A');
-	assertEquals(mower.getX(), 1);
-	assertEquals(mower.getY(), 3);
-	assertEquals(mower.getOrientation(), 'N');
+        // G > 1 - 2 - W
+        mowerBehavior.execute(mower, 'G');
+        assertEquals(mower.getX(), 1);
+        assertEquals(mower.getY(), 2);
+        assertEquals(mower.getOrientation(), 'W');
+        // A > 0 - 2 - W
+        mowerBehavior.execute(mower, 'A');
+        assertEquals(mower.getX(), 0);
+        assertEquals(mower.getY(), 2);
+        assertEquals(mower.getOrientation(), 'W');
+        // G > 0 - 2 - S
+        mowerBehavior.execute(mower, 'G');
+        assertEquals(mower.getX(), 0);
+        assertEquals(mower.getY(), 2);
+        assertEquals(mower.getOrientation(), 'S');
+        // A > 0 - 1 - S
+        mowerBehavior.execute(mower, 'A');
+        assertEquals(mower.getX(), 0);
+        assertEquals(mower.getY(), 1);
+        assertEquals(mower.getOrientation(), 'S');
+        // G > 0 - 1 - E
+        mowerBehavior.execute(mower, 'G');
+        assertEquals(mower.getX(), 0);
+        assertEquals(mower.getY(), 1);
+        assertEquals(mower.getOrientation(), 'E');
+        // A > 1 - 1 - E
+        mowerBehavior.execute(mower, 'A');
+        assertEquals(mower.getX(), 1);
+        assertEquals(mower.getY(), 1);
+        assertEquals(mower.getOrientation(), 'E');
+        // G > 1 - 1 - N
+        mowerBehavior.execute(mower, 'G');
+        assertEquals(mower.getX(), 1);
+        assertEquals(mower.getY(), 1);
+        assertEquals(mower.getOrientation(), 'N');
+        // A > 1 - 2 - N
+        mowerBehavior.execute(mower, 'A');
+        assertEquals(mower.getX(), 1);
+        assertEquals(mower.getY(), 2);
+        assertEquals(mower.getOrientation(), 'N');
+        // A > 1 - 3 - N
+        mowerBehavior.execute(mower, 'A');
+        assertEquals(mower.getX(), 1);
+        assertEquals(mower.getY(), 3);
+        assertEquals(mower.getOrientation(), 'N');
     }
 
 }

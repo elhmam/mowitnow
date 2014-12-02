@@ -71,53 +71,53 @@ public enum MovementEnum {
      * @param pDeltaY
      *            : déplacement vertical
      */
-    private MovementEnum(final char pDirection, final char pOrientation,
-	    final char pNewOrientation, final int pDeltaX, final int pDeltaY) {
-	this.direction = pDirection;
-	this.orientation = pOrientation;
-	this.newOrientation = pNewOrientation;
-	this.deltaX = pDeltaX;
-	this.deltaY = pDeltaY;
+    private MovementEnum(char pDirection, char pOrientation,
+            char pNewOrientation, int pDeltaX, int pDeltaY) {
+        this.direction = pDirection;
+        this.orientation = pOrientation;
+        this.newOrientation = pNewOrientation;
+        this.deltaX = pDeltaX;
+        this.deltaY = pDeltaY;
     }
 
     /**
      * Retourne la direction.
      * @return direction
      */
-    public final char getDirection() {
-	return direction;
+    public char getDirection() {
+        return direction;
     }
 
     /**
      * Retourne l'actuelle orientation.
      * @return orientation
      */
-    public final char getOrigin() {
-	return orientation;
+    public char getOrigin() {
+        return orientation;
     }
 
     /**
      * Retourne la nouvelle orientation.
      * @return newOrientation
      */
-    public final char getDestination() {
-	return newOrientation;
+    public char getDestination() {
+        return newOrientation;
     }
 
     /**
      * Retourne le déplacement horizontal.
      * @return deltaX
      */
-    public final int getDeltaX() {
-	return deltaX;
+    public int getDeltaX() {
+        return deltaX;
     }
 
     /**
      * Retourne le déplacement vertical.
      * @return deltaY
      */
-    public final int getDeltaY() {
-	return deltaY;
+    public int getDeltaY() {
+        return deltaY;
     }
 
 }

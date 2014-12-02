@@ -49,22 +49,21 @@ public class Mower {
      * @param pPath
      *            : Trajectoire de la tondeuse.
      */
-    public Mower(final int pX, final int pY, final char pOrientation,
-	    final Lawn pLawn, final String pPath) {
-	super();
-	setLawn(pLawn);
-	setOrientation(pOrientation);
-	setX(pX);
-	setY(pY);
-	setPath(pPath);
+    public Mower(int pX, int pY, char pOrientation, Lawn pLawn, String pPath) {
+        super();
+        setLawn(pLawn);
+        setOrientation(pOrientation);
+        setX(pX);
+        setY(pY);
+        setPath(pPath);
     }
 
     /**
      * Retourne la position horizontale de la tondeuse.
      * @return x
      */
-    public final int getX() {
-	return x;
+    public int getX() {
+        return x;
     }
 
     /**
@@ -73,20 +72,20 @@ public class Mower {
      * @param pX
      *            : position horizontale de la tondeuse.
      */
-    public final void setX(final int pX) {
-	if (pX >= 0 && pX <= getLawn().getXbound()) {
-	    this.x = pX;
-	} else {
-	    throw new IllegalArgumentException();
-	}
+    public void setX(int pX) {
+        if (pX >= 0 && pX <= getLawn().getXbound()) {
+            this.x = pX;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
      * Retourne la position verticale de la tondeuse.
      * @return y
      */
-    public final int getY() {
-	return y;
+    public int getY() {
+        return y;
     }
 
     /**
@@ -95,20 +94,20 @@ public class Mower {
      * @param pY
      *            : position verticale de la tondeuse.
      */
-    public final void setY(final int pY) {
-	if (pY >= 0 && pY <= getLawn().getYbound()) {
-	    this.y = pY;
-	} else {
-	    throw new IllegalArgumentException();
-	}
+    public void setY(int pY) {
+        if (pY >= 0 && pY <= getLawn().getYbound()) {
+            this.y = pY;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
      * Retourne l'orientation de la tondeuse de la tondeuse.
      * @return orientation
      */
-    public final char getOrientation() {
-	return orientation;
+    public char getOrientation() {
+        return orientation;
     }
 
     /**
@@ -116,24 +115,24 @@ public class Mower {
      * @param pOrientation
      *            : orientation de la tondeuse.
      */
-    public final void setOrientation(final char pOrientation) {
-	this.orientation = pOrientation;
-	// initialisation de l'orientation
-	for (MovementEnum orientationEnum : MovementEnum.values()) {
-	    if (orientationEnum.getDestination() == getOrientation()) {
-		setDeltaX(orientationEnum.getDeltaX());
-		setDeltaY(orientationEnum.getDeltaY());
-		break;
-	    }
-	}
+    public void setOrientation(char pOrientation) {
+        this.orientation = pOrientation;
+        // initialisation de l'orientation
+        for (MovementEnum orientationEnum : MovementEnum.values()) {
+            if (orientationEnum.getDestination() == getOrientation()) {
+                setDeltaX(orientationEnum.getDeltaX());
+                setDeltaY(orientationEnum.getDeltaY());
+                break;
+            }
+        }
     }
 
     /**
      * Retourne le déplacement horizontal de la tondeuse.
      * @return deltaX
      */
-    public final int getDeltaX() {
-	return deltaX;
+    public int getDeltaX() {
+        return deltaX;
     }
 
     /**
@@ -141,16 +140,16 @@ public class Mower {
      * @param pDeltaX
      *            : déplacement horizontal de la tondeuse.
      */
-    public final void setDeltaX(final int pDeltaX) {
-	this.deltaX = pDeltaX;
+    public void setDeltaX(int pDeltaX) {
+        this.deltaX = pDeltaX;
     }
 
     /**
      * Retourne le déplacement vertical de la tondeuse.
      * @return deltaY
      */
-    public final int getDeltaY() {
-	return deltaY;
+    public int getDeltaY() {
+        return deltaY;
     }
 
     /**
@@ -158,16 +157,16 @@ public class Mower {
      * @param pDeltaY
      *            : déplacement vertical de la tondeuse.
      */
-    public final void setDeltaY(final int pDeltaY) {
-	this.deltaY = pDeltaY;
+    public void setDeltaY(int pDeltaY) {
+        this.deltaY = pDeltaY;
     }
 
     /**
      * Retourne le champ de déplacement de la tondeuse.
      * @return lawn
      */
-    public final Lawn getLawn() {
-	return lawn;
+    public Lawn getLawn() {
+        return lawn;
     }
 
     /**
@@ -175,16 +174,16 @@ public class Mower {
      * @param pLawn
      *            : champ de déplacement de la tondeuse.
      */
-    public final void setLawn(final Lawn pLawn) {
-	this.lawn = pLawn;
+    public void setLawn(Lawn pLawn) {
+        this.lawn = pLawn;
     }
 
     /**
      * Retourne la trajectoire de la tondeuse.
      * @return path
      */
-    public final String getPath() {
-	return path;
+    public String getPath() {
+        return path;
     }
 
     /**
@@ -192,15 +191,15 @@ public class Mower {
      * @param pPath
      *            : trajectoire de déplacement de la tondeuse.
      */
-    public final void setPath(final String pPath) {
-	this.path = pPath;
+    public void setPath(String pPath) {
+        this.path = pPath;
     }
 
     @Override
-    public final String toString() {
-	return String.format("Mower [x=%s, y=%s, deltaX=%s, deltaY=%s, "
-		+ "orientation=%s, lawn=%s, path=%s]", x, y, deltaX, deltaY,
-		orientation, lawn, path);
+    public String toString() {
+        return String.format("Mower [x=%s, y=%s, deltaX=%s, deltaY=%s, "
+                + "orientation=%s, lawn=%s, path=%s]", x, y, deltaX, deltaY,
+                orientation, lawn, path);
     }
 
 }

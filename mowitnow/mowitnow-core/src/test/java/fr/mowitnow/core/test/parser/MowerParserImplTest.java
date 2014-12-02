@@ -18,6 +18,7 @@ import fr.mowitnow.core.parser.MowerParserImpl;
 
 /**
  * Test de la classe MowerParserImpl.
+ * 
  * @author elhmam
  */
 public class MowerParserImplTest {
@@ -31,7 +32,7 @@ public class MowerParserImplTest {
      */
     @Before
     public final void setUp() {
-	mowerParser = new MowerParserImpl();
+        mowerParser = new MowerParserImpl();
     }
 
     /**
@@ -41,8 +42,8 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testEmptyData() throws MowerParserException {
-	List<String> emptyLines = new ArrayList<String>();
-	mowerParser.loadMowers(emptyLines);
+        List<String> emptyLines = new ArrayList<String>();
+        mowerParser.loadMowers(emptyLines);
     }
 
     /**
@@ -52,9 +53,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testInvalidLinesNumber() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "1 2 N", "3 3 E",
-		"AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "1 2 N", "3 3 E",
+                "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -64,9 +65,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testInvalidLawnSize() throws MowerParserException {
-	List<String> instructions = Arrays.asList(" 5", "1 2 N", "GAGAGAGAA",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList(" 5", "1 2 N", "GAGAGAGAA",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -76,9 +77,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testMowerCoords() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "1 2 ", "GAGAGAGAA",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "1 2 ", "GAGAGAGAA",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -88,9 +89,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testMowerPosition() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "1 2 ", "GAGAGAGAA",
-		"6 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "1 2 ", "GAGAGAGAA",
+                "6 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -100,9 +101,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testMowerInstructions() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "1 2 N", "GAGAGOGAA",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "1 2 N", "GAGAGOGAA",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -112,18 +113,18 @@ public class MowerParserImplTest {
      */
     @Test
     public final void testLawnPattern() {
-	Pattern patternMower = Pattern
-		.compile(MowerParserPatternsEnum.PATTERN_LAWN.getValue());
-	assertFalse(patternMower.matcher("5(").find());
-	assertFalse(patternMower.matcher("55").find());
-	assertFalse(patternMower.matcher("5E").find());
-	assertFalse(patternMower.matcher("5 !").find());
-	assertFalse(patternMower.matcher("EE").find());
-	assertFalse(patternMower.matcher("5/6").find());
-	assertFalse(patternMower.matcher("?55").find());
-	assertTrue(patternMower.matcher("5 15").find());
-	assertTrue(patternMower.matcher("5 5").find());
-	assertFalse(patternMower.matcher("0 -1").find());
+        Pattern patternMower = Pattern
+                .compile(MowerParserPatternsEnum.PATTERN_LAWN.getValue());
+        assertFalse(patternMower.matcher("5(").find());
+        assertFalse(patternMower.matcher("55").find());
+        assertFalse(patternMower.matcher("5E").find());
+        assertFalse(patternMower.matcher("5 !").find());
+        assertFalse(patternMower.matcher("EE").find());
+        assertFalse(patternMower.matcher("5/6").find());
+        assertFalse(patternMower.matcher("?55").find());
+        assertTrue(patternMower.matcher("5 15").find());
+        assertTrue(patternMower.matcher("5 5").find());
+        assertFalse(patternMower.matcher("0 -1").find());
     }
 
     /**
@@ -133,18 +134,18 @@ public class MowerParserImplTest {
      */
     @Test
     public final void testMowerPattern() {
-	Pattern patternMower = Pattern
-		.compile(MowerParserPatternsEnum.PATTERN_MOWER.getValue());
-	assertFalse(patternMower.matcher("1 2 3").find());
-	assertFalse(patternMower.matcher("55").find());
-	assertFalse(patternMower.matcher("7ZZ").find());
-	assertFalse(patternMower.matcher("5 !").find());
-	assertFalse(patternMower.matcher("EE").find());
-	assertFalse(patternMower.matcher("5/6").find());
-	assertFalse(patternMower.matcher("1 8 Y").find());
-	assertTrue(patternMower.matcher("1 12 N").find());
-	assertTrue(patternMower.matcher("7 8 N").find());
-	assertFalse(patternMower.matcher("0 -1").find());
+        Pattern patternMower = Pattern
+                .compile(MowerParserPatternsEnum.PATTERN_MOWER.getValue());
+        assertFalse(patternMower.matcher("1 2 3").find());
+        assertFalse(patternMower.matcher("55").find());
+        assertFalse(patternMower.matcher("7ZZ").find());
+        assertFalse(patternMower.matcher("5 !").find());
+        assertFalse(patternMower.matcher("EE").find());
+        assertFalse(patternMower.matcher("5/6").find());
+        assertFalse(patternMower.matcher("1 8 Y").find());
+        assertTrue(patternMower.matcher("1 12 N").find());
+        assertTrue(patternMower.matcher("7 8 N").find());
+        assertFalse(patternMower.matcher("0 -1").find());
     }
 
     /**
@@ -154,18 +155,18 @@ public class MowerParserImplTest {
      */
     @Test
     public final void testMowerInstructionPattern() {
-	Pattern patternMower = Pattern
-		.compile(MowerParserPatternsEnum.PATTERN_ITINERARY.getValue());
-	assertFalse(patternMower.matcher("1 2 3").find());
-	assertFalse(patternMower.matcher("GADFGHJK").find());
-	assertFalse(patternMower.matcher("GAADAAAGH").find());
-	assertFalse(patternMower.matcher("5 !").find());
-	assertFalse(patternMower.matcher("EE").find());
-	assertFalse(patternMower.matcher("5/6").find());
-	assertFalse(patternMower.matcher("1 8 Y").find());
-	assertTrue(patternMower.matcher("GAAADAAG").find());
-	assertTrue(patternMower.matcher("AAAGDDDAG").find());
-	assertFalse(patternMower.matcher("AGGGGEDGGGG").find());
+        Pattern patternMower = Pattern
+                .compile(MowerParserPatternsEnum.PATTERN_ITINERARY.getValue());
+        assertFalse(patternMower.matcher("1 2 3").find());
+        assertFalse(patternMower.matcher("GADFGHJK").find());
+        assertFalse(patternMower.matcher("GAADAAAGH").find());
+        assertFalse(patternMower.matcher("5 !").find());
+        assertFalse(patternMower.matcher("EE").find());
+        assertFalse(patternMower.matcher("5/6").find());
+        assertFalse(patternMower.matcher("1 8 Y").find());
+        assertTrue(patternMower.matcher("GAAADAAG").find());
+        assertTrue(patternMower.matcher("AAAGDDDAG").find());
+        assertFalse(patternMower.matcher("AGGGGEDGGGG").find());
     }
 
     /**
@@ -175,9 +176,9 @@ public class MowerParserImplTest {
      */
     @Test
     public final void testCreateMower() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "1 2 N", "GAGAGDGAA",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "1 2 N", "GAGAGDGAA",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -187,9 +188,9 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testCreateMowerOutOfLawn() throws MowerParserException {
-	List<String> instructions = Arrays.asList("5 5", "6 6 N", "GAGAGDGAA",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+        List<String> instructions = Arrays.asList("5 5", "6 6 N", "GAGAGDGAA",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
     /**
@@ -200,10 +201,10 @@ public class MowerParserImplTest {
      */
     @Test(expected = MowerParserException.class)
     public final void testCreateMowerWithInvalidItinary()
-	    throws MowerParserException {
-	List<String> instructions = Arrays.asList("R 5", "6 6 N", "GAGAGDGAU",
-		"3 3 E", "AADAADADDA");
-	mowerParser.loadMowers(instructions);
+            throws MowerParserException {
+        List<String> instructions = Arrays.asList("R 5", "6 6 N", "GAGAGDGAU",
+                "3 3 E", "AADAADADDA");
+        mowerParser.loadMowers(instructions);
     }
 
 }

@@ -10,6 +10,7 @@ import fr.mowitnow.core.model.Mower;
 
 /**
  * Test de la classe Mower.
+ * 
  * @author elhmam
  */
 public class MowerTest {
@@ -23,8 +24,8 @@ public class MowerTest {
      */
     @Before
     public final void initTest() {
-	Lawn lawn = new Lawn(3, 4);
-	mower = new Mower(1, 2, 'N', lawn, "GAGAGAGAA");
+        Lawn lawn = new Lawn(3, 4);
+        mower = new Mower(1, 2, 'N', lawn, "GAGAGAGAA");
     }
 
     /**
@@ -32,17 +33,17 @@ public class MowerTest {
      */
     @Test
     public final void testMowerSetOrientation() {
-	assertEquals(mower.getDeltaX(), 0);
-	assertEquals(mower.getDeltaY(), 1);
-	mower.setOrientation('E');
-	assertEquals(mower.getDeltaX(), 1);
-	assertEquals(mower.getDeltaY(), 0);
-	mower.setOrientation('W');
-	assertEquals(mower.getDeltaX(), -1);
-	assertEquals(mower.getDeltaY(), 0);
-	mower.setOrientation('S');
-	assertEquals(mower.getDeltaX(), 0);
-	assertEquals(mower.getDeltaY(), -1);
+        assertEquals(mower.getDeltaX(), 0);
+        assertEquals(mower.getDeltaY(), 1);
+        mower.setOrientation('E');
+        assertEquals(mower.getDeltaX(), 1);
+        assertEquals(mower.getDeltaY(), 0);
+        mower.setOrientation('W');
+        assertEquals(mower.getDeltaX(), -1);
+        assertEquals(mower.getDeltaY(), 0);
+        mower.setOrientation('S');
+        assertEquals(mower.getDeltaX(), 0);
+        assertEquals(mower.getDeltaY(), -1);
     }
 
     /**
@@ -51,10 +52,10 @@ public class MowerTest {
      */
     @Test
     public final void testSetY() {
-	mower.setY(4);
-	assertEquals(mower.getY(), 4);
-	mower.setY(1);
-	assertEquals(mower.getY(), 1);
+        mower.setY(4);
+        assertEquals(mower.getY(), 4);
+        mower.setY(1);
+        assertEquals(mower.getY(), 1);
     }
 
     /**
@@ -63,7 +64,7 @@ public class MowerTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetYSupException() {
-	mower.setY(5);
+        mower.setY(5);
     }
 
     /**
@@ -72,7 +73,7 @@ public class MowerTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetYInfException() {
-	mower.setY(-1);
+        mower.setY(-1);
     }
 
     /**
@@ -81,10 +82,10 @@ public class MowerTest {
      */
     @Test
     public final void testSetX() {
-	mower.setX(3);
-	assertEquals(mower.getX(), 3);
-	mower.setX(2);
-	assertEquals(mower.getX(), 2);
+        mower.setX(3);
+        assertEquals(mower.getX(), 3);
+        mower.setX(2);
+        assertEquals(mower.getX(), 2);
     }
 
     /**
@@ -93,7 +94,7 @@ public class MowerTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetXSupException() {
-	mower.setX(5);
+        mower.setX(5);
     }
 
     /**
@@ -102,7 +103,7 @@ public class MowerTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testSetXInfException() {
-	mower.setX(-1);
+        mower.setX(-1);
     }
 
 }

@@ -16,25 +16,26 @@ public class MowerBehaviorImpl implements MowerBehavior {
      * ,char)
      */
     @Override
-    public final void move(final Mower pMower, final char pDirection) {
+    public Mower execute(Mower pMower, char pDirection) {
 
-	boolean movement = true;
-	for (MovementEnum orientationEnum : MovementEnum.values()) {
-	    if (orientationEnum.getDirection() == pDirection
-		    && orientationEnum.getOrigin() == pMower.getOrientation()) {
-		pMower.setOrientation(orientationEnum.getDestination());
-		pMower.setDeltaX(orientationEnum.getDeltaX());
-		pMower.setDeltaY(orientationEnum.getDeltaY());
-		movement = false;
-		break;
-	    }
-	}
+        boolean movement = true;
+        for (MovementEnum orientationEnum : MovementEnum.values()) {
+            if (orientationEnum.getDirection() == pDirection
+                    && orientationEnum.getOrigin() == pMower.getOrientation()) {
+                pMower.setOrientation(orientationEnum.getDestination());
+                pMower.setDeltaX(orientationEnum.getDeltaX());
+                pMower.setDeltaY(orientationEnum.getDeltaY());
+                movement = false;
+                break;
+            }
+        }
 
-	if (movement) {
-	    pMower.setX(pMower.getX() + pMower.getDeltaX());
-	    pMower.setY(pMower.getY() + pMower.getDeltaY());
-	}
+        if (movement) {
+            pMower.setX(pMower.getX() + pMower.getDeltaX());
+            pMower.setY(pMower.getY() + pMower.getDeltaY());
+        }
 
+        return pMower;
     }
 
 }

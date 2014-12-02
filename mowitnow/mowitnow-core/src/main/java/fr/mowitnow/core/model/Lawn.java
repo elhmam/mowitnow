@@ -2,6 +2,7 @@ package fr.mowitnow.core.model;
 
 /**
  * Classe représentant le champ.
+ * 
  * @author elhmam
  */
 public class Lawn {
@@ -16,31 +17,32 @@ public class Lawn {
 
     /**
      * Constructeur de la classe Lawn.
+     * 
      * @param pXbound
      *            : Limite horizontale du champ.
      * @param pYbound
      *            : Limite verticale du champ.
      */
-    public Lawn(final int pXbound, final int pYbound) {
-	super();
-	setXbound(pXbound);
-	setYbound(pYbound);
+    public Lawn(int pXbound, int pYbound) {
+        super();
+        setXbound(pXbound);
+        setYbound(pYbound);
     }
 
     /**
      * Retourne la limite horizontale du champ.
      * @return xbound
      */
-    public final int getXbound() {
-	return xbound;
+    public int getXbound() {
+        return xbound;
     }
 
     /**
      * Retourne la limite verticale du champ.
      * @return ybound
      */
-    public final int getYbound() {
-	return ybound;
+    public int getYbound() {
+        return ybound;
     }
 
     /**
@@ -48,12 +50,12 @@ public class Lawn {
      * @param pXbound
      *            : valeur de xbound
      */
-    public final void setXbound(final int pXbound) {
-	if (pXbound >= 0) {
-	    this.xbound = pXbound;
-	} else {
-	    throw new IllegalArgumentException();
-	}
+    public void setXbound(int pXbound) {
+        if (pXbound >= 0) {
+            this.xbound = pXbound;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -61,17 +63,17 @@ public class Lawn {
      * @param pYbound
      *            : valeur de ybound
      */
-    public final void setYbound(final int pYbound) {
-	if (pYbound >= 0) {
-	    this.ybound = pYbound;
-	} else {
-	    throw new IllegalArgumentException();
-	}
+    public void setYbound(int pYbound) {
+        if (pYbound >= 0) {
+            this.ybound = pYbound;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     @Override
-    public final String toString() {
-	return String.format("Lawn [xbound=%s, ybound=%s]", xbound, ybound);
+    public String toString() {
+        return String.format("Lawn [xbound=%s, ybound=%s]", xbound, ybound);
     }
 
 }
