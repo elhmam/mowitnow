@@ -9,9 +9,11 @@ public final class MowerParserException extends Exception {
      * serialVersionUID.
      */
     private static final long serialVersionUID = 1L;
+
     /**
      * Constructeur de la classe MowerParserException.
-     * @param message : message d'erreur
+     * @param message
+     *            : message d'erreur
      */
     public MowerParserException(final String message) {
 	super(message);

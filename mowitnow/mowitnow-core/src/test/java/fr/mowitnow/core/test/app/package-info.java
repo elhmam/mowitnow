@@ -3,6 +3,5 @@
  */
 /**
  * @author elhmam
- *
  */
 package fr.mowitnow.core.test.app;

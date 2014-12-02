@@ -41,7 +41,7 @@
 					<form class="navbar-form navbar-left" method="POST" action="/home">
 						<div class="form-group">
 							<textarea rows="10" cols="70" name="data" class="form-control"
-								placeholder="Entrer le plan d'exécution">${data}</textarea>
+								placeholder="Entrer le plan d'exécution">${insctructions}</textarea>
 						</div>
 						<br> <br>
 						<button type="submit" class="btn btn-default">Lancer les

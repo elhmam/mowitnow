@@ -24,8 +24,12 @@ public class App {
     /**
      * LOGGER.
      */
-    static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+    /**
+     * Constructeur privé.
+     */
+    private App() {
+    }
     /**
      * Méthode principale.
      * @param args
@@ -42,7 +46,7 @@ public class App {
 	try {
 	    lines = FileUtils.readLines(new File(args[0]));
 	} catch (IOException e1) {
-	    LOGGER.error(e1.getMessage());
+	    LOGGER.error(e1.getMessage(),e1);
 	}
 
 	MowerParser mowerParser = new MowerParserImpl();
@@ -52,7 +56,7 @@ public class App {
 	    try {
 		mowers = mowerParser.loadMowers(lines);
 	    } catch (MowerParserException e) {
-		LOGGER.error(e.getMessage());
+		LOGGER.error(e.getMessage(),e);
 	    }
 
 	    MowerBehavior mowerBehavior = new MowerBehaviorImpl();
