@@ -51,19 +51,19 @@ JVM ≥ 1.7
 
 ## R&eacute;pertoires
 <pre>
-* __mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.</li>
-* __mowitnow-web__ : Interface web permettant de tester en ligne le projet.</li>
+__mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.</li>
+__mowitnow-web__ : Interface web permettant de tester en ligne le projet.</li>
 </pre>
 
 ## Lancement
 <pre>
-* __mowitnow-core__ :
+__mowitnow-core__ :
 $ cd mowitnow-core<br> 
 $ mvn exec:java<br> <br>
 </pre>
 
-* __mowitnow-web__ :
-* <pre>
+__mowitnow-web__ :
+<pre>
 $ cd mowitnow-web
 $ mvn spring-boot:run
 $ curl localhost:8089
