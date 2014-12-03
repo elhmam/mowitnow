@@ -44,10 +44,8 @@ NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une a
 
 </pre>
 ## Pr&eacute;requis
-<pre>
 Maven
 JVM ≥ 1.7
-</pre>
 
 ## R&eacute;pertoires
 * __mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.
