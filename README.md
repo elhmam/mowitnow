@@ -1,5 +1,6 @@
 # Mini-projet Mowitnow
-<h2>Sp&eacute;cifications</h2>
+## Sp&eacute;cifications
+<pre>
 La soci&eacute;t&eacute; MowItNow a d&eacute;cid&eacute; de d&eacute;velopper une tondeuse &agrave; gazon automatique, destin&eacute;e aux surfaces rectangulaires.
 
 La tondeuse peut être programm&eacute;e pour parcourir l'int&eacute;gralit&eacute; de la surface.
@@ -43,6 +44,7 @@ On attend le r&eacute;sultat suivant (position finale des tondeuses) :<br>
 
 NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une autre forme qu'un fichier (par exemple un test automatis&eacute;).
 
+</pre>
 <h2>Pr&eacute;requis</h2>
 Maven
 JVM ≥ 1.7
