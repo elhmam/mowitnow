@@ -53,27 +53,21 @@ JVM ≥ 1.7
 <li><b>mowitnow-web :</b> Interface web permettant de tester en ligne le projet.</li>
 </ul>
 
-<h2>R&eacute;pertoires</h2>
-<ul>
-<li><b>mowitnow-core :</b>Impl&eacute;mentation des sp&eacute;cifications.</li>
-<li><b>mowitnow-web :</b> Interface web permettant de tester en ligne le projet.</li>
-</ul>
-
-<h2>Compilation</h2>
+<h2>Package</h2>
 $ mvn clean install
 
 <h2>Lancement</h2>
 
 <ul>
 <li><b>mowitnow-core :</b>
-$ cd mowitnow-core
-$ mvn exec:java
+$ cd mowitnow-core<br> 
+$ mvn exec:java<br> 
 </li>
-<li><b>mowitnow-web :</b> 
-$ cd mowitnow-web
-$ mvn spring-boot:run
-$ curl localhost:<b>8089</b>
-ou via le navigateur en allant sur :http://localhost:<b>8089</b>
+<li><b>mowitnow-web :</b><br> 
+$ cd mowitnow-web<br> 
+$ mvn spring-boot:run<br> 
+$ curl localhost:<b>8089</b><br> 
+ou via le navigateur en allant sur :http://localhost:<b>8089</b><br> 
 </li>
 </ul>
 
