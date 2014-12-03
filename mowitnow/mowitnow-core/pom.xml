@@ -10,7 +10,8 @@
 	</parent>
 	<artifactId>mowitnow-core</artifactId>
 	<name>mowitnow-core</name>
-	<url>http://maven.apache.org</url>
+	<description>Le core du projet mowitnow</description>
+	<url>http://localhost:8089</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -47,4 +48,20 @@
 			<version>1.1.2</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<!-- Run project using mvn exec:java -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<mainClass>fr.mowitnow.core.app.App</mainClass>
+					<arguments>
+						<argument>instructions.txt</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

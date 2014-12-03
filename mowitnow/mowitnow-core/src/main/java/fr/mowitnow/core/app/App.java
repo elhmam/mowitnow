@@ -62,15 +62,16 @@ public class App {
 	    MowerBehavior mowerBehavior = new MowerBehaviorImpl();
 
 	    for (Mower mower : mowers) {
-		LOGGER.info(String.format("Début : [%s, %s, %s]", mower.getX(),
+		LOGGER.info(String.format("Start : [%s, %s, %s]", mower.getX(),
 			mower.getY(), mower.getOrientation()));
 		for (char c : mower.getPath().toCharArray()) {
 		    mowerBehavior.execute(mower, c);
 		    LOGGER.debug(c + " > " + mower.getX() + " - "
 			    + mower.getY() + " - " + mower.getOrientation());
 		}
-		LOGGER.info(String.format("Fin : [%s, %s, %s]", mower.getX(),
+		LOGGER.info(String.format("End : [%s, %s, %s]", mower.getX(),
 			mower.getY(), mower.getOrientation()));
+		LOGGER.info("----------------------------------------------");
 	    }
 	}
 

@@ -19,39 +19,39 @@ public class MowerParserImpl implements MowerParser {
     /**
      * Aucune données n'est fournie.
      */
-    private final static String EMPTY_DATA = "Aucune donnée n'est fournie";
+    private static final String EMPTY_DATA = "Aucune donnée n'est fournie";
     /**
      * Le nombre de ligne n'est pas valide.
      */
-    private final static String LINE_NUMBER_NOT_VALID = "Le nombre de lignes du ne doit pas etre pair";
+    private static final String LINE_NUMBER_NOT_VALID = "Le nombre de lignes du ne doit pas etre pair";
     /**
      * Les dimensions de la tondeuse ne sont pas valides.
      */
-    private final static String LAWN_DIM_NOT_VALID = "Ligne : 1 > Les dimensions du champ ne sont pas valides : %s";
+    private static final String LAWN_DIM_NOT_VALID = "Ligne : 1 > Les dimensions du champ ne sont pas valides : %s";
     /**
      * Les coordonnées de la tondeuse ne sont pas complétes.
      */
-    private final static String MOWER_COORDS_NOT_VALID = "Ligne : %s "
+    private static final String MOWER_COORDS_NOT_VALID = "Ligne : %s "
             + " > Les coordonnées de la tondeuse ne sont"
             + " pas valides : %s ";
     /**
      * Les coordonnées de la tondeuse ne sont pas valides.
      */
-    private final static String MOWER_POSITION_NOT_VALID = "Ligne : %s  > La tondeuse ne peut etre placée à "
+    private static final String MOWER_POSITION_NOT_VALID = "Ligne : %s  > La tondeuse ne peut etre placée à "
             + "l'exterieur du champ : %s";
     /**
      * La trajectoire de la tondeuse n'est pas valide.
      */
-    private final static String ITINERARY_NOT_VALID = "Ligne : %s > La trajectoire de la tondeuse "
+    private static final String ITINERARY_NOT_VALID = "Ligne : %s > La trajectoire de la tondeuse "
             + "n'est pas valide : %s ";
     /**
      * Pour vérifier si le nombre de ligne est pair.
      */
-    private final static int MAGIC_TWO = 2;
+    private static final int MAGIC_TWO = 2;
     /**
      * Index de l'orientation.
      */
-    private final static int ORIENTATION_INDEX = 3;
+    private static final int ORIENTATION_INDEX = 3;
 
     /*
      * (non-Javadoc)

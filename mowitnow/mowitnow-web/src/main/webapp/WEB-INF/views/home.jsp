@@ -38,10 +38,10 @@
 					<h3 class="panel-title">Instructions</h3>
 				</div>
 				<div class="panel-body">
-					<form class="navbar-form navbar-left" method="POST" action="/home">
+					<form class="navbar-form navbar-left" method="POST" action="/">
 						<div class="form-group">
-							<textarea rows="10" cols="70" name="data" class="form-control"
-								placeholder="Entrer le plan d'exécution">${insctructions}</textarea>
+							<textarea rows="10" cols="70" name="instructions" class="form-control"
+								placeholder="Entrer le plan d'exécution">${instructions}</textarea>
 						</div>
 						<br> <br>
 						<button type="submit" class="btn btn-default">Lancer les

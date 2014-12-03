@@ -65,9 +65,9 @@ public class MowerController {
    */
   private static final String INSTRUCTIONS = "instructions";
   /**
-   * Racine du site.
+   * Page du formulaire.
    */
-  private static final String HOME = "/";
+  private static final String HOME = "home";
   /**
    * Liste des instructions par défaut.
    */
@@ -100,7 +100,7 @@ public class MowerController {
    * Traitement du formulaire.
    * @param instructions : Instructions renseignées
    * @param model : Model
-   * @return la page à afficher
+   * @return La page à afficher
    */
   @RequestMapping(method = RequestMethod.POST)
   public String mowitnowSubmit(
@@ -150,8 +150,8 @@ public class MowerController {
   }
   /**
    * Retourne la liste des instructions
-   * @param instructions : chaine de caractères
-   * @return la liste des insctructions
+   * @param instructions : Chaine de caractères
+   * @return La liste des insctructions
    */
   public List<String> getListFromInstructionString(String instructions) {
     List<String> lines = new ArrayList<>();
