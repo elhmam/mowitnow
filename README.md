@@ -52,17 +52,16 @@ JVM ≥ 1.7
 * __mowitnow-web__ : Interface web permettant de tester en ligne le projet.</li>
 
 ## Lancement
-* mowitnow-core :
+* __mowitnow-core__ :
 ** $ cd mowitnow-core<br> 
 $ mvn exec:java<br> <br>
 </li>
-<li><b>mowitnow-web :</b><br> 
+* __mowitnow-web__ :
 $ cd mowitnow-web<br> 
 $ mvn spring-boot:run<br> 
 $ curl localhost:<b>8089</b><br> 
 ou via le navigateur en allant sur :http://localhost:<b>8089</b><br> 
-</li>
-</ul>
+
 
 
 
