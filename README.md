@@ -52,7 +52,7 @@ NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une a
 * __mowitnow-web__ : Interface web permettant de tester en ligne le projet.
 
 ## Lancement
-
+$ mvn clean install
 __mowitnow-core__ :
 <pre>
 $ cd mowitnow-core
