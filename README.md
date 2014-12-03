@@ -44,7 +44,7 @@ NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une a
 
 </pre>
 ## Pr&eacute;requis
-Maven
+Maven<br>
 JVM ≥ 1.7
 
 ## R&eacute;pertoires
