@@ -48,14 +48,12 @@ Maven
 JVM ≥ 1.7
 
 ## R&eacute;pertoires
-* mowitnow-core : Impl&eacute;mentation des sp&eacute;cifications.</li>
-* mowitnow-web : Interface web permettant de tester en ligne le projet.</li>
+* __mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.</li>
+* __mowitnow-web__ : Interface web permettant de tester en ligne le projet.</li>
 
 ## Lancement
-
-<ul>
-<li><b>mowitnow-core :</b><br>
-$ cd mowitnow-core<br> 
+* mowitnow-core :
+** $ cd mowitnow-core<br> 
 $ mvn exec:java<br> <br>
 </li>
 <li><b>mowitnow-web :</b><br> 
