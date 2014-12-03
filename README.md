@@ -59,9 +59,9 @@ $ mvn clean install
 <h2>Lancement</h2>
 
 <ul>
-<li><b>mowitnow-core :</b>
+<li><b>mowitnow-core :</b><br>
 $ cd mowitnow-core<br> 
-$ mvn exec:java<br> 
+$ mvn exec:java<br> <br>
 </li>
 <li><b>mowitnow-web :</b><br> 
 $ cd mowitnow-web<br> 
