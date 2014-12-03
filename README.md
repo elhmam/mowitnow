@@ -64,7 +64,7 @@ __mowitnow-web__ :
 $ cd mowitnow-web
 $ mvn spring-boot:run
 $ curl localhost:8089
-ou via le navigateur en allant sur :http://localhost:8089
+ou via le navigateur en allant sur http://localhost:8089
 </pre>
 
 
