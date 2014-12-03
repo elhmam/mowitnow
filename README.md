@@ -44,8 +44,8 @@ NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une a
 
 </pre>
 ## Pr&eacute;requis
-Maven<br>
-JVM ≥ 1.7
+* Maven
+* JVM ≥ 1.7
 
 ## R&eacute;pertoires
 * __mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.
@@ -64,7 +64,7 @@ __mowitnow-web__ :
 $ cd mowitnow-web
 $ mvn spring-boot:run
 $ curl localhost:8089
-ou via le navigateur en allant sur :http://localhost:<b>8089
+ou via le navigateur en allant sur :http://localhost:8089
 </pre>
 
 
