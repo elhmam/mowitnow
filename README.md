@@ -50,15 +50,15 @@ JVM ≥ 1.7
 </pre>
 
 ## R&eacute;pertoires
-__mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.</li>
-__mowitnow-web__ : Interface web permettant de tester en ligne le projet.</li>
+* __mowitnow-core__ : Impl&eacute;mentation des sp&eacute;cifications.
+* __mowitnow-web__ : Interface web permettant de tester en ligne le projet.
 
 ## Lancement
 
 __mowitnow-core__ :
 <pre>
-$ cd mowitnow-core<br> 
-$ mvn exec:java<br> <br>
+$ cd mowitnow-core
+$ mvn exec:java
 </pre>
 
 __mowitnow-web__ :
