@@ -48,6 +48,8 @@ Maven
 JVM ≥ 1.7
 
 <h2>Répertoires</h2>
-mowitnow-core : Contient l'implémentation des spécifications.
-mowitnow-web : Interface web permettant de tester en ligne le projet.
+<ul>
+<li><b>mowitnow-core :</b> Contient l'implémentation des spécifications.</li>
+<li><b>mowitnow-web :</b> Interface web permettant de tester en ligne le projet.</li>
+</ul>
 
