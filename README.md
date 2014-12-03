@@ -1,4 +1,4 @@
-<h1>Mini-projet Mowitnow</h1>
+# Mini-projet Mowitnow
 <h2>Sp&eacute;cifications</h2>
 La soci&eacute;t&eacute; MowItNow a d&eacute;cid&eacute; de d&eacute;velopper une tondeuse &agrave; gazon automatique, destin&eacute;e aux surfaces rectangulaires.
 
