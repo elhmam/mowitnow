@@ -43,7 +43,7 @@ On attend le r&eacute;sultat suivant (position finale des tondeuses) :
 NB: Les donn&eacute;es en entr&eacute;e peuvent être inject&eacute;e sous une autre forme qu'un fichier (par exemple un test automatis&eacute;).
 
 </pre>
-## Pr&eacute;requis
+## Pr&eacute;-requis
 * Maven
 * JVM ≥ 1.7
 
