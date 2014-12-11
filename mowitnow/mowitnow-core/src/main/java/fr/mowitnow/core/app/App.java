@@ -49,10 +49,11 @@ public class App {
 	    LOGGER.error(e1.getMessage(),e1);
 	}
 
-	MowerParser mowerParser = new MowerParserImpl();
-	List<Mower> mowers = new ArrayList<>();
 
 	if (!lines.isEmpty()) {
+	    MowerParser mowerParser = new MowerParserImpl();
+	    List<Mower> mowers = new ArrayList<>();
+
 	    try {
 		mowers = mowerParser.loadMowers(lines);
 	    } catch (MowerParserException e) {
